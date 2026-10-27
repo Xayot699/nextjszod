@@ -20,6 +20,12 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Todo form validation and caching
+
+The create and edit forms share a client component that uses React `useActionState` to display server-side Zod validation errors and a pending `Saving...` state. Native input constraints provide basic client-side validation; the Server Actions validate submitted values again before writing to Supabase.
+
+The `/todos` list uses Next.js Cache Components with the `minutes` cache profile. Create, edit, and delete actions call `revalidatePath("/todos")` so the list is refreshed after a mutation.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
